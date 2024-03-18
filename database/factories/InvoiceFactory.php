@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Customer; //import the model
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Invoice>
  */
@@ -19,6 +19,11 @@ class InvoiceFactory extends Factory
         $status = $this->faker->randomeElement(['B','P','V']); //estados del invoice
         return [
             //
+            'customer_id' => Customer::factory(), //cuando llamemos al seeder
+            'amount' => $this->faker->numberBetween(100,20000),
+            'status' => $status,
+            'billed_date' => $this->faker->dateTimeThisCentury(),
+            'paid_date' => $status == 'P' ? $this->faker->dateTimeThisCentury() : NULL,
         ];
     }
 }
