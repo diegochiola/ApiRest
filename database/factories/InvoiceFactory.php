@@ -16,6 +16,7 @@ class InvoiceFactory extends Factory
      */
     public function definition(): array
     {
+        $status = $this->faker->randomeElement(['B','P','V']); //estados del invoice
         return [
             //
         ];

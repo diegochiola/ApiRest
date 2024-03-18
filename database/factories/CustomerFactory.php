@@ -14,10 +14,22 @@ class CustomerFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+     
     public function definition(): array
     {
+        $type = $this->faker->randomElement(['I','B']);
+            $name= $type == 'I' ? $this->faker->name() : $this->faker->company(); //operador ternario
         return [
-            //
+            //dentro del return
+            'name' => $name,
+            'type'=> $type,
+            'email'=> $this->faker->email(),
+            'address'=> $this->faker->streetAddress(),
+            'city' => $this->faker->city(),
+            'state' => $this->faker->state(),
+            'postal_code'=> $this->faker->postCode()
+           
         ];
     }
 }
